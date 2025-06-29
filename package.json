@@ -1,7 +1,6 @@
 {
   "name": "stripe-checkout-server",
   "version": "1.0.0",
-  "type": "commonjs",
   "dependencies": {
     "stripe": "^12.0.0"
   }
