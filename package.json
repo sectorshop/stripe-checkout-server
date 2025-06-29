@@ -1,5 +1,8 @@
 {
   "name": "stripe-checkout-server",
   "version": "1.0.0",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "stripe": "^12.0.0"
+  }
 }
