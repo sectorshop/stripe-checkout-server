@@ -1,5 +1,4 @@
-// api/create-checkout-session.js
-const stripe = require('stripe')('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');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 /**
  * @param {import('vercel').VercelRequest} req
@@ -18,8 +17,10 @@ module.exports = async (req, res) => {
         {
           price_data: {
             currency: 'usd',
-            product_data: { name: 'Sample Product' },
-            unit_amount: 2000,
+            product_data: {
+              name: 'Sample Product',
+            },
+            unit_amount: 2000, // $20.00
           },
           quantity: 1,
         },
@@ -30,7 +31,7 @@ module.exports = async (req, res) => {
     });
 
     res.status(200).json({ id: session.id });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };
