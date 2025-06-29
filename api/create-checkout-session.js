@@ -11,8 +11,8 @@ module.exports = async (req, res) => {
       payment_method_types: ['card'],
       line_items: req.body.items,
       mode: 'payment',
-      success_url: 'https://example.com/success',
-      cancel_url: 'https://example.com/cancel',
+      success_url: 'https://sector-shop.com/success',
+      cancel_url: 'https://sector-shop.com/cancel',
     });
 
     res.status(200).json({ id: session.id });
