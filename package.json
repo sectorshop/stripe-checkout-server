@@ -2,8 +2,7 @@
   "name": "stripe-checkout-server",
   "version": "1.0.0",
   "scripts": {
-    "start": "echo 'Start script for Vercel — not used'",
-    "dev": "vercel dev"
+    "start": "echo 'This is a serverless project — no start needed'"
   },
   "dependencies": {
     "stripe": "^12.0.0"
