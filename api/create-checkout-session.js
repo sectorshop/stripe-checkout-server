@@ -1,24 +1,36 @@
+// api/create-checkout-session.js
 const stripe = require('stripe')('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');
 
+/**
+ * @param {import('vercel').VercelRequest} req
+ * @param {import('vercel').VercelResponse} res
+ */
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
-    res.status(405).json({ error: 'Method not allowed' });
+    res.status(405).send({ error: 'Method not allowed' });
     return;
   }
 
   try {
-    const { line_items } = req.body;
-
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card', 'apple_pay', 'google_pay'],
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: { name: 'Sample Product' },
+            unit_amount: 2000,
+          },
+          quantity: 1,
+        },
+      ],
       mode: 'payment',
-      line_items,
-      success_url: 'https://sector-shop.com/success',
-      cancel_url: 'https://sector-shop.com/cancel',
+      success_url: 'https://example.com/success',
+      cancel_url: 'https://example.com/cancel',
     });
 
-    res.status(200).json({ url: session.url });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(200).json({ id: session.id });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
