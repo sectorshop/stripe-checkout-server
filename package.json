@@ -1,7 +1,6 @@
 {
   "name": "stripe-checkout-server",
   "version": "1.0.0",
-  "scripts": {},
   "dependencies": {
     "express": "^4.17.1",
     "stripe": "^12.0.0"
